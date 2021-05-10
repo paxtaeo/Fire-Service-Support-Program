@@ -1,0 +1,26 @@
+{% extends "meal/base.html" %}
+
+{% block content %}
+
+<div class="form-signin bg-body shadow rounded py-5 px-4">
+    <form method="post" action="{% url 'accounts:login' %}">{% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="h3 mb-3 text-center mb-5">아침 먹으러 왔니?</div>
+
+        <div class="form-floating mb-3">
+            {{ form.username }}
+            <label for="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username.errors }}
+        </div>
+        <div class="form-floating mb-3">
+            {{ form.password }}
+            <label for="{{ form.password.id_for_label }}">Password</label>
+            {{ form.password.errors }}
+        </div>
+
+        <button class="w-100 btn btn-lg btn-outline-primary mb-5" type="submit">로그인</button>
+        <p class="text-muted text-end"><small>Copyright &copy; 2021 Taeo. All Rights Reserved</small></p>
+    </form>
+</div>
+
+{% endblock %}

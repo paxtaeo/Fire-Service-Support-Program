@@ -1,0 +1,36 @@
+{% extends 'meal/base.html' %}
+
+{% block content %}
+
+    <form method="post" class="row row-col-1 g-4 w-100">{% csrf_token %}
+
+        <div class="col-md-12">
+            <div class="p-3 border bg-body shadow rounded">
+                <div class="row">
+                    <div class="col">즐겨찾기 추가</div>
+                </div>
+                <hr/>
+                <div class="row font-weight-light text-center g-4">
+
+                    {% for field in form %}
+                        <div class="col-md-4">
+                            {{ field.errors }}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="text-end">주문금액 : <span id='total_price'>0</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 offset-md-8 d-grid">
+            <button type="submit" class="btn btn-light btn-lg">등록하기</button>
+        </div>
+
+    </form>
+    
+{% endblock %}

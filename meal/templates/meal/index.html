@@ -1,0 +1,53 @@
+{% extends 'meal/base.html' %}
+
+{% block content %}
+
+    <div class="row row-col-1 row-col-md-3 g-4 w-100">
+        <div class="col-md-12">
+            <div class="p-3 border bg-body shadow rounded">
+                {% if todayMenus %}
+                <div class="row text-center">
+                    <div class="col">{{ todayMenus.user }}님의 오늘의 메뉴 ({{ todayMenus.date }})</div>
+                </div>
+                <hr/>
+                <div class="row font-weight-light text-center">
+                    <div class="col">{{ todayMenus.menu1|default_if_none:"-" }}</div>
+                    <div class="col">{{ todayMenus.menu2|default_if_none:"-" }}</div>
+                    <div class="col">{{ todayMenus.menu3|default_if_none:"-" }}</div>
+                </div>
+                {% else %}
+                <div class="row text-center">
+                    <div class="col">{{ user }}님, 오늘은 아침이 없으시네요!</div>
+                </div>
+                <hr/>
+                <div class="row font-weight-light text-center">
+                    <div class="col">결식</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-4">
+            {% if todoFirst %}
+            <a href="{% url 'meal:order_update' todoFirst %}" class="text-decoration-none text-reset">
+                <div class="p-3 bg-body shadow rounded">주문 요청하기
+                    <span class="badge rounded-pill bg-info float-end">{{ todoNum }}</span>
+                </div>
+            </a>
+            {% else %}
+            <div class="p-3 bg-secondary shadow rounded">모든 주문이 완료되었습니다</div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <a href="{% url 'meal:order_list' %}" class="text-decoration-none text-reset">
+                <div class="p-3 bg-body shadow rounded">주문 확인하기</div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'meal:favorites_new' %}" class="text-decoration-none text-reset">
+                <div class="p-3 bg-body shadow rounded">즐겨찾기 추가</div>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

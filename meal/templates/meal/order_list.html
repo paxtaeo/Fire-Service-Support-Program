@@ -1,0 +1,64 @@
+{% extends 'meal/base.html' %}
+
+{% block content %}
+
+{% regroup orders|dictsort:'status' by status as order_list %}
+
+
+<div id="ordersCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for order in order_list.1.list %}
+            <button type="button" data-bs-target="#ordersCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for order in order_list.1.list %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="bg-body shadow rounded d-flex flex-column align-items-center h-100 w-100 p-5">
+                <div class="flex-fill">{{ order.date }}</div>
+                <div class="flex-fill font-weight-light">{{ order.menu1|default_if_none:"-" }}</div>
+                <div class="flex-fill font-weight-light">{{ order.menu2|default_if_none:"-" }}</div>
+                <div class="flex-fill font-weight-light">{{ order.menu3|default_if_none:"-" }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#ordersCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#ordersCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="w-100 position-absolute top-100 p-3 pb-5">
+    <div class="border bg-body shadow rounded p-1">
+        <table class="table table-striped table-hover font-weight-light text-center">
+            <thead>
+                <tr>
+                    <th scope="col" class="font-weight-normal">날짜</th>
+                    <th scope="col" class="font-weight-normal">메뉴1</th>
+                    <th scope="col" class="font-weight-normal">메뉴2</th>
+                    <th scope="col" class="font-weight-normal">메뉴3</th>
+                    <th scope="col" class="font-weight-normal">수정</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in order_list.0.list %}
+                <tr>
+                    <th scope="row" class="font-weight-normal">{{ order.date|date:"n/j" }}</th>
+                    <td>{{ order.menu1|default_if_none:"-" }}</td>
+                    <td>{{ order.menu2|default_if_none:"-" }}</td>
+                    <td>{{ order.menu3|default_if_none:"-" }}</td>
+                    <td>
+                        <a href="{% url 'meal:order_update' order.id %}" class="btn btn-outline-dark btn-sm">수정</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

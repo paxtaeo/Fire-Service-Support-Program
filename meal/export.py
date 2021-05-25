@@ -1,7 +1,7 @@
 import openpyxl, random
 from datetime import datetime, timedelta
 from django.http import HttpResponse
-from django.conf import settings
+from django.contrib.staticfiles.storage import staticfiles_storage
 from .models import DailyMenu, Favorites
 
 startCol = 8
@@ -27,7 +27,7 @@ def exportWeeklyMenus(request):
         headers={'Content-Disposition': 'attachment; filename="meal.xlsx"'},
     )
 
-    formFilePath = 'meal/static/sheet/form.xlsx'
+    formFilePath = staticfiles_storage.path('meal/sheet/form.xlsx')
 
     wb = openpyxl.load_workbook(formFilePath)
     ws1 = wb['개인']

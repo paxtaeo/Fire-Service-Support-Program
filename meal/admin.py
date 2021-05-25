@@ -10,7 +10,7 @@ class DailyMenuAdmin(admin.ModelAdmin):
     # 필터링 항목 설정
     list_filter = ('date', 'user', 'status')
 
-    actions = ["export_as_csv"]
+    actions = ["export_as_csv", "mark_as_absent"]
 
     def export_as_csv(self, request, queryset):
         response = HttpResponse(
@@ -28,6 +28,11 @@ class DailyMenuAdmin(admin.ModelAdmin):
             row = writer.writerow([getattr(obj, field) for field in field_names])
 
         return response
+    
+    def mark_as_absent(self, request, queryset):
+        for obj in queryset:
+            obj.status = 1
+            obj.save()
 
 
 class FavoritesAdmin(admin.ModelAdmin):

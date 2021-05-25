@@ -26,10 +26,6 @@ class DailyMenu(models.Model):
             DailyMenu.objects.bulk_create([
                 DailyMenu(date = date, user = user) for user in users
             ])
-    
-# from meal.models import DailyMenu
-# from datetime import timedelta, date
-# DailyMenu.createDrafts(date(2021,5,20), 10)
 
     def setDailyMenu(self, menu1, menu2, menu3):
         self.menu1 = menu1

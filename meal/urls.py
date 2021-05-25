@@ -9,4 +9,7 @@ urlpatterns = [
     path('orders/', login_required(views.OrderListView.as_view()), name = 'order_list'),
     path('orders/<int:pk>/update/', login_required(views.OrderUpdateView.as_view()), name='order_update'),
     path('favorites/new', login_required(views.FavoritesCreateView.as_view()), name='favorites_new'),
+
+    path('create/', views.create, name='create'),
+    path('export/', views.export, name='export'),
 ]

@@ -26,6 +26,7 @@
                 {% endif %}
             </div>
         </div>
+
         <div class="col-md-4">
             {% if todoFirst %}
             <a href="{% url 'meal:order_update' todoFirst %}" class="text-decoration-none text-reset">
@@ -37,7 +38,6 @@
             <div class="p-3 bg-secondary shadow rounded">모든 주문이 완료되었습니다</div>
             {% endif %}
         </div>
-
         <div class="col-md-4">
             <a href="{% url 'meal:order_list' %}" class="text-decoration-none text-reset">
                 <div class="p-3 bg-body shadow rounded">주문 확인하기</div>
@@ -48,6 +48,26 @@
                 <div class="p-3 bg-body shadow rounded">즐겨찾기 추가</div>
             </a>
         </div>
-    </div>
+
+        {% if request.user.is_staff %}
+        <div class="col-md-6">
+            <div class="p-3 border bg-body shadow rounded">
+                <form class="d-flex" action="{% url 'meal:create' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="date" value="2021-06-07" name="startDate"> 
+                    <button class="btn btn-outline-dark btn-sm w-50" type="submit">주문요청 생성</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 border bg-body shadow rounded">
+                <form class="d-flex" action="{% url 'meal:export' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="date" value="2021-06-07" name="startDate"> 
+                    <button class="btn btn-outline-dark btn-sm w-50" type="submit">주문서 생성</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
 
 {% endblock %}

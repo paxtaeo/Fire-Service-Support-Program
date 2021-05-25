@@ -1,13 +1,13 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
+from .export import exportWeeklyMenus
 
 from .models import DailyMenu, Favorites
 from .forms import DailyMenuForm, FavoritesForm
 
-from datetime import date
+from datetime import date, datetime
 
 class IndexView(generic.TemplateView):
     template_name = 'meal/index.html'
@@ -78,3 +78,9 @@ class FavoritesCreateView(generic.CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+def create(request):
+    DailyMenu.createDrafts(datetime.strptime(request.POST['startDate'], '%Y-%m-%d'), 7)
+    return redirect('meal:index')
+
+def export(request):
+    return exportWeeklyMenus(request)

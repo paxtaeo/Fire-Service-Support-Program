@@ -5,7 +5,7 @@
 <div class="form-signin bg-body shadow rounded py-5 px-4">
     <form method="post" action="{% url 'accounts:login' %}">{% csrf_token %}
         {{ form.non_field_errors }}
-        <div class="h3 mb-3 text-center mb-5">아침 먹으러 왔니?</div>
+        <div class="h3 mb-3 text-center mb-5">아침 드시러 오셨슴까?</div>
 
         <div class="form-floating mb-3">
             {{ form.username }}

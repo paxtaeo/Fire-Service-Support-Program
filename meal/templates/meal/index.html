@@ -17,7 +17,7 @@
                 </div>
                 {% else %}
                 <div class="row text-center">
-                    <div class="col">{{ user }}님, 오늘은 아침이 없으시네요!</div>
+                    <div class="col">{{ user }} 대원님, 오늘은 아침이 없으심다!</div>
                 </div>
                 <hr/>
                 <div class="row font-weight-light text-center">
@@ -30,22 +30,22 @@
         <div class="col-md-4">
             {% if todoFirst %}
             <a href="{% url 'meal:order_update' todoFirst %}" class="text-decoration-none text-reset">
-                <div class="p-3 bg-body shadow rounded">주문 요청하기
+                <div class="p-3 bg-transparent shadow rounded">주문 요청하기
                     <span class="badge rounded-pill bg-info float-end">{{ todoNum }}</span>
                 </div>
             </a>
             {% else %}
-            <div class="p-3 bg-secondary shadow rounded">모든 주문이 완료되었습니다</div>
+            <!-- <div class="p-3 bg-secondary shadow rounded">모든 주문이 완료되었습니다</div> -->
             {% endif %}
         </div>
         <div class="col-md-4">
             <a href="{% url 'meal:order_list' %}" class="text-decoration-none text-reset">
-                <div class="p-3 bg-body shadow rounded">주문 확인하기</div>
+                <div class="p-3 bg-transparent shadow rounded">주문 확인하기</div>
             </a>
         </div>
         <div class="col-md-4">
             <a href="{% url 'meal:favorites_new' %}" class="text-decoration-none text-reset">
-                <div class="p-3 bg-body shadow rounded">즐겨찾기 추가</div>
+                <div class="p-3 bg-transparent shadow rounded">즐겨찾기 추가</div>
             </a>
         </div>
 

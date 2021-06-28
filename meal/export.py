@@ -48,6 +48,12 @@ def exportWeeklyMenus(request):
             else:
                 randomFavorites = favoritesList[random.randrange(len(favoritesList))]
                 menus = list(filter(lambda a: a != None, [randomFavorites.menu1, randomFavorites.menu2, randomFavorites.menu3]))
+                obj.menu1 = menus[0]
+                obj.menu2 = menus[1]
+                if len(menus) == 3:
+                    obj.menu3 = menus[2]
+                obj.status = 1
+                obj.save()
                 
             if len(menus) == 0:
                 ws1.cell(row, col, '결식')

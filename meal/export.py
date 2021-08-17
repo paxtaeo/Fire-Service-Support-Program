@@ -39,9 +39,11 @@ def exportWeeklyMenus(request):
         ws1.cell(4, 8 + 3 * i, date.strftime('%m/%d'))
         ws2.cell(2, 5 + 5 * i, date.strftime('%m/%d'))
         menuList = DailyMenu.objects.filter(date = date.strftime('%Y-%m-%d'))
-        favoritesList = Favorites.objects.all()
         for obj in menuList:
             row, col = userRowDict[str(obj.user)], startCol + 3 * i
+            favoritesList = Favorites.objects.filter(user = obj.user)
+            if len(favoritesList) == 0:
+                favoritesList = Favorites.objects.all()
 
             if obj.status >= 1:
                 menus = list(filter(lambda a: a != None, [obj.menu1, obj.menu2, obj.menu3]))

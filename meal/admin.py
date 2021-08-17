@@ -10,7 +10,7 @@ class DailyMenuAdmin(admin.ModelAdmin):
     # 필터링 항목 설정
     list_filter = ('date', 'user', 'status')
 
-    actions = ["export_as_csv", "mark_as_status0", "mark_as_status1", "mark_as_status2"]
+    actions = ["export_as_csv", "reset", "mark_as_status0", "mark_as_status1", "mark_as_status2"]
 
     def export_as_csv(self, request, queryset):
         response = HttpResponse(
@@ -29,6 +29,14 @@ class DailyMenuAdmin(admin.ModelAdmin):
 
         return response
     
+    def reset(self, request, queryset):
+        for obj in queryset:
+            obj.status = 0
+            obj.menu1 = None
+            obj.menu2 = None
+            obj.menu3 = None
+            obj.save()
+
     def mark_as_status0(self, request, queryset):
         for obj in queryset:
             obj.status = 0

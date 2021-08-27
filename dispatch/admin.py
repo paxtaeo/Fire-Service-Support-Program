@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Incident, Team, DispatchedTeam
+from .models import Incident, BaseTeam, DispatchedTeam
 
 
 class IncidentAdmin(admin.ModelAdmin):
@@ -7,7 +7,7 @@ class IncidentAdmin(admin.ModelAdmin):
     list_filter = ('in_progress',)
 
 
-class TeamAdmin(admin.ModelAdmin):
+class BaseTeamAdmin(admin.ModelAdmin):
     list_display = ('agency', 'location', 'vehicle', 'headcount')
     list_filter = ('agency', 'location', 'vehicle')
 
@@ -18,5 +18,5 @@ class DispatchedTeamAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Incident, IncidentAdmin)
-admin.site.register(Team, TeamAdmin)
+admin.site.register(BaseTeam, BaseTeamAdmin)
 admin.site.register(DispatchedTeam, DispatchedTeamAdmin)

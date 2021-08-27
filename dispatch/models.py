@@ -56,6 +56,13 @@ class Team(models.Model):
     vehicle = models.CharField(max_length = 100, null = True, choices = vehicle_list)
     headcount = models.IntegerField()
 
+    class Meta:
+        abstract = True
+
+
+class BaseTeam(Team):
+    pass
+
 
 class DispatchedTeam(Team):
     incident = models.ForeignKey('Incident', on_delete=models.CASCADE)

@@ -31,3 +31,7 @@ $RECYCLE.BIN/
 .vscode/
 .history/
 *.code-workspace
+
+#Migrations
+**/migrations/*
+!**/migrations/__init__.py

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="w-100 pb-3">
+        <form method="post">{% csrf_token %}
+            <div class="border bg-body shadow rounded p-1">
+                <table class="table table-hover table-sm font-weight-light text-center w-100" style="table-layout: fixed; font-size: 0.8rem;">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="font-weight-normal">구분</th>
+                            <th scope="col" class="font-weight-normal">원주소방서</th>
+                            <th scope="col" class="font-weight-normal">응원소방서</th>
+                            <th scope="col" class="font-weight-normal">타시도지원</th>
+                            <th scope="col" class="font-weight-normal">유관기관</th>
+                            <th scope="col" class="font-weight-normal">총계</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>차량 수</th>
+                            <td id="vehicle-wonju"></td>
+                            <td id="vehicle-support"></td>
+                            <td id="vehicle-other"></td>
+                            <td id="vehicle-coorperated"></td>
+                            <td id="vehicle-total"></td>
+                        </tr>
+                        <tr>
+                            <th>인원 수</th>
+                            <td id="headcount-wonju"></td>
+                            <td id="headcount-support"></td>
+                            <td id="headcount-other"></td>
+                            <td id="headcount-coorperated"></td>
+                            <td id="headcount-total"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <div class="w-100 pb-3">
+        <form method="post">{% csrf_token %}
+            <div class="border bg-body shadow rounded p-1">
+                <table class="table table-hover table-sm font-weight-light text-center w-100" style="table-layout: fixed; font-size: 0.8rem;">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="font-weight-normal">차종</th>
+                            <th scope="col" class="font-weight-normal">펌프</th>
+                            <th scope="col" class="font-weight-normal">물탱크</th>
+                            <th scope="col" class="font-weight-normal">화학차</th>
+                            <th scope="col" class="font-weight-normal">구급</th>
+                            <th scope="col" class="font-weight-normal">구조</th>
+                            <th scope="col" class="font-weight-normal">기타</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>차량 수</th>
+                            <td id="vehicle-pump"></td>
+                            <td id="vehicle-tank"></td>
+                            <td id="vehicle-chemical"></td>
+                            <td id="vehicle-ambulance"></td>
+                            <td id="vehicle-rescue"></td>
+                            <td id="vehicle-etc"></td>
+                        </tr>
+                        <tr>
+                            <th>인원 수</th>
+                            <td id="headcount-pump"></td>
+                            <td id="headcount-tank"></td>
+                            <td id="headcount-chemical"></td>
+                            <td id="headcount-ambulance"></td>
+                            <td id="headcount-rescue"></td>
+                            <td id="headcount-etc"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <div class="w-100 pb-5">
+        <form method="post">{% csrf_token %}
+            <div class="border bg-body shadow rounded p-1 mb-3">
+                <table id="dispatchedTeam-table" class="table table-hover table-sm font-weight-light text-center w-100" style="table-layout: fixed; font-size: 0.8rem;">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="font-weight-normal">구분</th>
+                            <th scope="col" class="font-weight-normal">지역</th>
+                            <th scope="col" class="font-weight-normal">차량</th>
+                            <th scope="col" class="font-weight-normal">인원</th>
+                            <th scope="col" class="font-weight-normal">출동여부</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ formset.management_form }}
+                        {% for form in formset %}
+                            {{ form.id }}
+                            <tr>
+                                <td>{{ form.agency.value }}</td>
+                                <td>{{ form.location.value }}</td>
+                                <td>{{ form.vehicle.value }}</td>
+                                <td>{{ form.headcount }}</td>
+                                <td class="form-switch align-middle">
+                                    {{ form.is_dispatched }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-3 d-grid float-end">
+                <button type="submit" class="btn btn-light">저장하기</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

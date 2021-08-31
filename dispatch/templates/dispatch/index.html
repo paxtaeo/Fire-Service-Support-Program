@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row row-col-1 row-col-md-3 g-4 w-100">
+    <div class="col-md-12">
+        <div class="p-3 border bg-body shadow rounded">
+            <form class="d-flex" action="{% url 'dispatch:create_incident' %}" method="POST"> {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="재난명" name="outline">
+                    <button class="btn btn-outline-secondary" type="button">출동 상황 발생</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if incidents %}
+        {% for incident in incidents %}
+            <div class="col-md-12">
+                <a href="{% url 'dispatch:update_dispatchedTeam' incident.id %}" class="text-decoration-none text-reset">
+                    <div class="p-3 border bg-body shadow rounded">
+                        <div class="row text-center">
+                            <div class="col">{{ incident.created_at }} : <strong>{{ incident.outline }}</strong> 출동</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

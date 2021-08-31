@@ -67,3 +67,17 @@ class BaseTeam(Team):
 class DispatchedTeam(Team):
     incident = models.ForeignKey('Incident', on_delete=models.CASCADE)
     is_dispatched = models.BooleanField(default = False)
+
+    def createDrafts(incident):
+        teams = BaseTeam.objects.all()
+        DispatchedTeam.objects.bulk_create([
+            DispatchedTeam(
+                agency = team.agency,
+                location = team.location,
+                vehicle = team.vehicle,
+                headcount = team.headcount,
+                incident = incident
+                ) for team in teams
+            ])
+        return
+

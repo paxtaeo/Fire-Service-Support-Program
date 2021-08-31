@@ -20,6 +20,7 @@ function calculateHeadcount() {
     let vehicle_dict = {
         '펌프' : '펌프',
         '물탱크' : '물탱크',
+        '지휘' : '기타',
         '경형사다리차' : '기타',
         '고가사다리차' : '기타',
         '굴절차' : '기타',

@@ -15,3 +15,7 @@ function setMenusAsFavorites(favorites) {
     let menus = favorites.toString().split(' | ').slice(1)
     menus.forEach(setNthMenu);
 }
+
+if (document.getElementById('total_price')) {
+    calculateTotalPrice();
+}

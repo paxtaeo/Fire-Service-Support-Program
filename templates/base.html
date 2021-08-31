@@ -75,14 +75,10 @@
         integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous">
     </script>
 
-    <script src="{% static 'meal/js/meal.js' %}" type="text/javascript"></script>
     <script>
         menu_list = {{ menu_list | safe }};
-
-        if (document.getElementById('total_price')) {
-            calculateTotalPrice();
-        }
     </script>
+    <script src="{% static 'meal/js/meal.js' %}" type="text/javascript"></script>
 
 </body>
 

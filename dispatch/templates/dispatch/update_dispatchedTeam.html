@@ -28,7 +28,7 @@
                             <td id="vehicle-support"></td>
                             <td id="vehicle-other"></td>
                             <td id="vehicle-coorperated"></td>
-                            <td id="vehicle-total"></td>
+                            <td id="vehicle-total" class="font-weight-bold"></td>
                         </tr>
                         <tr>
                             <th>인원 수</th>
@@ -36,7 +36,7 @@
                             <td id="headcount-support"></td>
                             <td id="headcount-other"></td>
                             <td id="headcount-coorperated"></td>
-                            <td id="headcount-total"></td>
+                            <td id="headcount-total" class="font-weight-bold"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -102,9 +102,9 @@
                         {% for form in formset %}
                             {{ form.id }}
                             <tr>
-                                <td>{{ form.agency.value }}</td>
-                                <td>{{ form.location.value }}</td>
-                                <td>{{ form.vehicle.value }}</td>
+                                <td>{{ form.agency.value }}{{ form.agency.as_hidden }}</td>
+                                <td>{{ form.location.value }}{{ form.location.as_hidden }}</td>
+                                <td>{{ form.vehicle.value }}{{ form.vehicle.as_hidden }}</td>
                                 <td>{{ form.headcount }}</td>
                                 <td class="form-switch align-middle">
                                     {{ form.is_dispatched }}

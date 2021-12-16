@@ -8,7 +8,7 @@
             <form class="d-flex" action="{% url 'dispatch:create_incident' %}" method="POST"> {% csrf_token %}
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="재난명" name="outline">
-                    <button class="btn btn-outline-secondary" type="button">출동 상황 발생</button>
+                    <button class="btn btn-outline-secondary" type="submit">출동 상황 발생</button>
                 </div>
             </form>
         </div>

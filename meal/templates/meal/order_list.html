@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% regroup orders|dictsort:'status' by status as order_list %}
+{% regroup orders|dictsort:'isNowdays' by isNowdays as order_list %}
 
 
 <div id="ordersCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -46,7 +46,8 @@
                 </tr>
             </thead>
             <tbody>
-            {% for order in order_list.0.list %}
+            {% for order in orders %}
+                {% if order.status == 1 %}
                 <tr>
                     <th scope="row" class="font-weight-normal">{{ order.date|date:"n/j" }}</th>
                     <td>{{ order.menu1|default_if_none:"-" }}</td>
@@ -56,6 +57,7 @@
                         <a href="{% url 'meal:order_update' order.id %}" class="btn btn-outline-dark btn-sm">수정</a>
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

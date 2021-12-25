@@ -38,6 +38,11 @@ class DailyMenu(models.Model):
         self.status = 2
         self.save()
 
+    @property
+    def isNowdays(self):
+        today = date.today()
+        return today - timedelta(days=3) <= self.date and self.date <= today + timedelta(days=3)
+
     def __str__(self):
         return f'{self.date} | {self.user} | {self.menu1} | {self.menu2} | {self.menu3} | {self.status}'
 

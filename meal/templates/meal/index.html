@@ -54,7 +54,7 @@
             <div class="p-3 border bg-body shadow rounded">
                 <form class="d-flex" action="{% url 'meal:create' %}" method="POST">
                     {% csrf_token %}
-                    <input class="form-control me-2" type="date" value="2021-06-07" name="startDate"> 
+                    <input class="form-control me-2" type="date" name="startDate" step="7" min="2022-01-03">
                     <button class="btn btn-outline-dark btn-sm w-50" type="submit">요청 생성</button>
                 </form>
             </div>
@@ -63,7 +63,7 @@
             <div class="p-3 border bg-body shadow rounded">
                 <form class="d-flex" action="{% url 'meal:export' %}" method="POST">
                     {% csrf_token %}
-                    <input class="form-control me-2" type="date" value="2021-06-07" name="startDate"> 
+                    <input class="form-control me-2" type="date" name="startDate" step="7" min="2022-01-03">
                     <button class="btn btn-outline-dark btn-sm w-50" type="submit">주문서 생성</button>
                 </form>
             </div>

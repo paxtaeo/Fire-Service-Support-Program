@@ -26,7 +26,3 @@ function setDefaultValueOfDateInput() {
 if (document.getElementById('total_price')) {
     calculateTotalPrice();
 }
-
-if (document.getElementsByName('startDate')) {
-    setDefaultValueOfDateInput();
-}

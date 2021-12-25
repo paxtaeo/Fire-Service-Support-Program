@@ -4,17 +4,10 @@ from django.http import HttpResponse
 from django.contrib.staticfiles.storage import staticfiles_storage
 from .models import DailyMenu, Favorites
 
+userList = ['김완수', '이영빈', '안태현', '전지훈', '박순재', '권용빈', '백종민', '홍석윤']
+
 startCol = 8
-userRowDict = {
-    '김건': 5,
-    '윤상혁': 7,
-    '김완수': 9,
-    '이영빈': 11,
-    '안태현': 13,
-    '전지훈': 15,
-    '박순재': 17,
-    '백종민': 19
-}
+userRowDict = dict(zip(userList, range(5, 20, 2)))
 
 def exportWeeklyMenus(request):
     startDate = datetime.strptime(request.POST['startDate'], '%Y-%m-%d')

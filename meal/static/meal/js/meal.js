@@ -16,6 +16,17 @@ function setMenusAsFavorites(favorites) {
     menus.forEach(setNthMenu);
 }
 
+function setDefaultValueOfDateInput() {
+    var today = new Date();
+    document.getElementsByName('startDate').forEach((el, _) => {
+        el.value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    })
+}
+
 if (document.getElementById('total_price')) {
     calculateTotalPrice();
+}
+
+if (document.getElementsByName('startDate')) {
+    setDefaultValueOfDateInput();
 }
